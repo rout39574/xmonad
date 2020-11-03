@@ -29,6 +29,31 @@ import XMonad.Actions.CycleWS
 import XMonad.Util.EZConfig(additionalKeys)
 import XMonad.Config.Gnome
 
+import Control.Monad
+
+
+
+-- Confirmation.  mod-shift-q is only occasionally a problem, but
+--  it's really aggravating to footshoot that way.
+
+confirm :: String -> X () -> X ()
+confirm msg f = do
+    a <- dmenu [msg,"y","n"]
+    when (a=="y") f
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
 --
@@ -233,10 +258,10 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm              , xK_b     ), sendMessage ToggleStruts)
 
     -- Quit xmonad
-    , ((modm .|. shiftMask, xK_q     ), io (exitWith ExitSuccess))
+    , ((modm .|. shiftMask, xK_q     ), confirm "Exist XMONAD session?"   $ io (exitWith ExitSuccess))
 
     -- Restart xmonad
-    , ((modm              , xK_q     ), spawn "xmonad  --recompile; xmonad  --restart")
+    , ((modm              , xK_q     ),  confirm "Reload" $  spawn "xmonad  --recompile; xmonad  --restart")
     ]
     ++
 
