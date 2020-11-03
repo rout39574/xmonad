@@ -17,3 +17,6 @@ gnome-keyring-daemon --replace --components=secrets,ssh,pcks11
 SSH_ASKPASS=/usr/lib/ssh/x11-ssh-askpass ssh-add  < /dev/null
 
 /usr/bin/trayer --edge top --width 15 --SetDockType true --align left --SetPartialStrut true & 
+
+xmobar &
+
