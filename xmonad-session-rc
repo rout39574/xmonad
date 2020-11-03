@@ -1,0 +1,17 @@
+#!/bin/bash
+
+
+
+
+
+~/bin/randrs
+
+xsetroot -solid grey15
+
+xscreensaver &
+
+xrdb -merge .Xdefaults
+
+gnome-keyring-daemon --replace --components=secrets,ssh,pcks11
+
+SSH_ASKPASS=/usr/lib/ssh/x11-ssh-askpass ssh-add  < /dev/null
